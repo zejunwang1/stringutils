@@ -2074,7 +2074,7 @@ class ustring
     _M_allocator(size_type __capacity)
     { 
       _M_ptr = (_CodeT *)malloc((__capacity + 1) * sizeof(_CodeT));
-      if (_M_ptr == nullptr)
+      if (!_M_ptr)
         std::__throw_bad_alloc();
     }
     
@@ -2086,7 +2086,7 @@ class ustring
     _M_realloc(size_type __n)
     { 
       pointer __tmp = (_CodeT *)realloc(_M_ptr, (__n + 1) * sizeof(_CodeT));
-      if (__n && __tmp == nullptr)
+      if (__n && !__tmp)
         std::__throw_bad_alloc();
       _M_data(__tmp);
     }
